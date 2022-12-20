@@ -4,5 +4,5 @@
    "aws_secret_access_key":"spotonsecretkey",
    "endpoint_url":"http://minio-s3:9000",
    "bucket":"spoton-assignment",
-   "tables":"[{\"search_pattern\":\"olist_order_items_dataset.csv\",   \"table_name\":\"order_items\",   \"delimiter\":\",\",   \"date_overrides\":\"shipping_limit_date\"}]"
+   "tables":"[{\"search_pattern\":\"olist_order_items_dataset.csv\",   \"table_name\":\"order_items\",   \"delimiter\":\",\",   \"key_properties\":\"order_id,product_id,order_item_id\", \"date_overrides\":\"shipping_limit_date\"}]"
 }
