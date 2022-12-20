@@ -55,7 +55,14 @@ Before making processing I looked into csv files using Jupyter Notebook. I've pr
 Due to the fact that the data loading was one-time, I did not apply in my solution some patterns that should be used for multiple/continuous processing.
 
 1. In the case of processing data on an ongoing basis (e.g., once a day, once an hour), it would be necessary to use partitioning where the data is stored. For example, include in the directory structure what day/time it came from. This will allow you to easily find the data you need and will also allow you to easily delete old data. I.e. `/{year}/{month}/{day}/{hour}/{file_name}.csv`. The granularity should depend on what type of data we are dealing with and its size and also how it is processed.
-2. Depending on how the data loaded into the database will be used later, we can next use `dbt` to prepare the appropriate views for the required needs.
-3. If the source of input data would be some message broker, such as Kafka or Google PubSub, then if there is a possibility, it is worth using verification of transmitted data using, for example, Avro Schema.
-4. If there is a possibility, it is worth finding out how the data will be used later. As a result, in some cases it is worth applying denormalization to the database to gain performance and reduce CPU/RAM costs.
-5. The configuration of Airflow itself in a production environment should have other parameters (e.g., do not use sqlite, do not use SequentialExecutor).
+2. With properly partitioned input data, we can parallelize its processing.
+3. Depending on how the data loaded into the database will be used later, we can next use `dbt` to prepare the appropriate views for the required needs.
+4. If the source of input data would be some message broker, such as Kafka or Google PubSub, then if there is a possibility, it is worth using verification of transmitted data using, for example, Avro Schema.
+5. If there is a possibility, it is worth finding out how the data will be used later. As a result, in some cases it is worth applying denormalization to the database to gain performance and reduce CPU/RAM costs.
+6. The configuration of Airflow itself in a production environment should have other parameters (e.g., do not use sqlite, do not use SequentialExecutor, provide monitoring, distributed execution, etc.).
+7. If there is a need to reach many times for the same set of data in processing, some kind of cache can be used.
+8. For sensitive production data, pseudo-anonymization can be used at the processing stage.
+9. If you have performance issues, consider using other frameworks, such as Apache Spark or Apache Flink.
+10. Niektóre przypadki użycia mogą wymagać użycia windowingu w przetwarzaniu przy pomocy Apache Flink czy używając Kafka Streams.
+11. If the generated CSV files are very large, it is worth considering storing them in another format, such as ORC, Parquet using a distributed file system such as HDFS.
+12. Some of the data can be saved to H5 format (or any other format used by the team) and pushed out using DVC if the need arises from Data Scientists.
