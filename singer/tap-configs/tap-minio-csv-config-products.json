@@ -1,0 +1,8 @@
+{
+   "start_date":"2022-12-18T00:00:00Z",
+   "aws_access_key_id":"spotonaccesskey",
+   "aws_secret_access_key":"spotonsecretkey",
+   "endpoint_url":"http://minio-s3:9000",
+   "bucket":"spoton-assignment",
+   "tables":"[{\"search_pattern\":\"olist_products_dataset.csv\",   \"table_name\":\"products\",   \"key_properties\":\"product_id\",   \"delimiter\":\",\"}]"
+}

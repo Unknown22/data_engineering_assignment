@@ -1,0 +1,41 @@
+dataset_download_dir: /root/airflow/datasets/brazilian-ecommerce
+minio:
+  bucket: spoton-assignment
+files_to_process_and_storage:
+  - olist_customers_dataset.csv
+  - olist_order_items_dataset.csv
+  - olist_orders_dataset.csv
+  - olist_products_dataset.csv
+singer_configs:
+  - name: customers
+    schema_path: /root/singer/schemas/customers-catalog.json
+    tap:
+      config_path: /root/singer/tap-configs/tap-minio-csv-config-customers.json
+      path: /root/venvs/tap-minio-csv/bin/tap-minio-csv
+    target:
+      config_path: /root/singer/target-configs/target-postgres.json
+      path: /root/venvs/target-postgres/bin/target-postgres
+  - name: order_items
+    schema_path: /root/singer/schemas/order-items-catalog.json
+    tap:
+      config_path: /root/singer/tap-configs/tap-minio-csv-config-order-items.json
+      path: /root/venvs/tap-minio-csv/bin/tap-minio-csv
+    target:
+      config_path: /root/singer/target-configs/target-postgres.json
+      path: /root/venvs/target-postgres/bin/target-postgres
+  - name: orders
+    schema_path: /root/singer/schemas/orders-catalog.json
+    tap:
+      config_path: /root/singer/tap-configs/tap-minio-csv-config-orders.json
+      path: /root/venvs/tap-minio-csv/bin/tap-minio-csv
+    target:
+      config_path: /root/singer/target-configs/target-postgres.json
+      path: /root/venvs/target-postgres/bin/target-postgres
+  - name: products
+    schema_path: /root/singer/schemas/products-catalog.json
+    tap:
+      config_path: /root/singer/tap-configs/tap-minio-csv-config-products.json
+      path: /root/venvs/tap-minio-csv/bin/tap-minio-csv
+    target:
+      config_path: /root/singer/target-configs/target-postgres.json
+      path: /root/venvs/target-postgres/bin/target-postgres

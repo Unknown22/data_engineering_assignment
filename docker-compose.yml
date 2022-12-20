@@ -12,13 +12,32 @@ services:
 
   minio-s3:
     image: minio/minio
+    command: server --console-address ":9001" /home/shared
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     environment:
-      MINIO_ACCESS_KEY: spoton
-      MINIO_SECRET_KEY: spoton
+      MINIO_ACCESS_KEY: spotonaccesskey
+      MINIO_SECRET_KEY: spotonsecretkey
 
   ingest:
     depends_on:
       - db
       - minio-s3
-    build:
-      context: .
+    build: .
+    restart: always
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - AWS_ACCESS_KEY_ID=spotonaccesskey
+      - AWS_SECRET_ACCESS_KEY=spotonsecretkey
+      - KAGGLE_USERNAME=miwarai
+      - KAGGLE_KEY=145f1a504288530f5884d9efe9f64ac4
+    volumes:
+      - ./airflow/dags:/root/airflow/dags
+      - ./singer:/root/singer
+    ports:
+      - "8080:8080"
+    command: webserver
