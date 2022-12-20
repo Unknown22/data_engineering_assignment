@@ -1,0 +1,8 @@
+{
+   "start_date":"2022-12-18T00:00:00Z",
+   "aws_access_key_id":"spotonaccesskey",
+   "aws_secret_access_key":"spotonsecretkey",
+   "endpoint_url":"http://minio-s3:9000",
+   "bucket":"spoton-assignment",
+   "tables":"[{\"search_pattern\":\"olist_orders_dataset.csv\",   \"table_name\":\"orders\",   \"key_properties\":\"order_id\",   \"delimiter\":\",\",   \"date_overrides\":\"order_purchase_timestamp,order_approved_at,order_delivered_carrier_date,order_delivered_customer_date,order_estimated_delivery_date\"}]"
+}
