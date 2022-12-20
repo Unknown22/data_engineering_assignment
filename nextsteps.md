@@ -62,7 +62,7 @@ Due to the fact that the data loading was one-time, I did not apply in my soluti
 6. The configuration of Airflow itself in a production environment should have other parameters (e.g., do not use sqlite, do not use SequentialExecutor, provide monitoring, distributed execution, etc.).
 7. If there is a need to reach many times for the same set of data in processing, some kind of cache can be used.
 8. For sensitive production data, pseudo-anonymization can be used at the processing stage.
-9. If you have performance issues, consider using other frameworks, such as Apache Spark or Apache Flink.
-10. Niektóre przypadki użycia mogą wymagać użycia windowingu w przetwarzaniu przy pomocy Apache Flink czy używając Kafka Streams.
+9. If you have performance issues, you might consider using other frameworks, such as Apache Spark or Apache Flink.
+10. Some use cases may require windowing in processing with Apache Flink or using Kafka Streams.
 11. If the generated CSV files are very large, it is worth considering storing them in another format, such as ORC, Parquet using a distributed file system such as HDFS.
 12. Some of the data can be saved to H5 format (or any other format used by the team) and pushed out using DVC if the need arises from Data Scientists.
