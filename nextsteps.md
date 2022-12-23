@@ -66,3 +66,4 @@ Due to the fact that the data loading was one-time, I did not apply in my soluti
 10. Some use cases may require windowing in processing with, i.e. Apache Flink or using Kafka Streams.
 11. If the generated CSV files are very large, it is worth considering storing them in another format, such as ORC, Parquet using a distributed file system such as HDFS.
 12. Some of the data can be saved to H5 format (or any other format used by the team) and pushed out using DVC if the need arises from Data Scientists.
+13. Required addition of error handling and documentation in Airflow DAG.
